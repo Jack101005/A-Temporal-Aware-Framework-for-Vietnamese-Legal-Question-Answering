@@ -1,0 +1,41 @@
+# Core
+python-dotenv
+
+# Scraping
+requests
+beautifulsoup4
+playwright
+
+# Database
+psycopg[binary]
+sqlalchemy
+pgvector
+
+# NLP / embeddings
+torch
+transformers
+sentence-transformers
+underthesea          # Vietnamese NLP utilities
+rank-bm25            # sparse retrieval baseline
+
+# LLM providers
+openai
+anthropic
+google-generativeai
+
+# Evaluation / analysis
+scikit-learn
+scipy
+pandas
+numpy
+rouge-score
+matplotlib
+seaborn
+
+# API
+fastapi
+uvicorn
+
+# Dev
+pytest
+jupyter
