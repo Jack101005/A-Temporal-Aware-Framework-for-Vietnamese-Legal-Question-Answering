@@ -1,23 +1,23 @@
 """
 setup_db.py
 ===========
-One-time setup + sanity check. Run this AFTER installing PostgreSQL.
+One-time setup + sanity check. Run AFTER PostgreSQL is installed.
 
-What it does (in order):
+What it does:
   1. connects to PostgreSQL
   2. creates the tables from schema.sql
-  3. loads the 3 sample minimum-wage decrees
+  3. loads the minimum-wage decrees (with structured_data for the UI)
   4. runs the temporal query for several dates to prove it works
 
 Run with:  python scripts/setup_db.py
 """
 
 import sys, json
-from datetime import date, datetime
+from datetime import datetime
 
 sys.path.insert(0, ".")
-from src.database.db import LegalDB
-from src.database.models import LegalDocument
+import psycopg2
+from configs.settings import DATABASE_URL
 
 
 def _parse_date(s):
@@ -25,40 +25,60 @@ def _parse_date(s):
 
 
 def main():
-    db = LegalDB()
-    db.connect()
+    conn = psycopg2.connect(DATABASE_URL)
     print("Connected to PostgreSQL.")
 
-    db.init_schema()
+    # create schema
+    with open("src/database/schema.sql", encoding="utf-8") as f:
+        with conn.cursor() as cur:
+            cur.execute(f.read())
+    conn.commit()
     print("Schema created.")
 
-    # Load sample documents
-    with open("data/questions/sample_documents.json", encoding="utf-8") as f:
-        raw = json.load(f)
+    # load wage documents (richer dataset with structured_data)
+    with open("data/questions/wage_documents.json", encoding="utf-8") as f:
+        docs = json.load(f)
 
-    for r in raw:
-        doc = LegalDocument(
-            document_id=r["document_id"],
-            title=r["title"],
-            document_type=r["document_type"],
-            issuing_agency=r["issuing_agency"],
-            issue_date=_parse_date(r["issue_date"]),
-            effective_from=_parse_date(r["effective_from"]),
-            effective_to=_parse_date(r["effective_to"]),
-            content=r["content"],
-            embedding=None,   # embeddings added in a later step
-        )
-        db.insert_document(doc)
-    print(f"Inserted {len(raw)} documents.")
+    with conn.cursor() as cur:
+        for d in docs:
+            cur.execute(
+                """
+                INSERT INTO legal_documents
+                    (document_id, title, document_type, issuing_agency,
+                     issue_date, effective_from, effective_to, content, structured_data)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                ON CONFLICT (document_id) DO UPDATE SET
+                    title = EXCLUDED.title,
+                    effective_from = EXCLUDED.effective_from,
+                    effective_to = EXCLUDED.effective_to,
+                    content = EXCLUDED.content,
+                    structured_data = EXCLUDED.structured_data;
+                """,
+                (d["document_id"], d["title"], d["document_type"], d["issuing_agency"],
+                 _parse_date(d["issue_date"]), _parse_date(d["effective_from"]),
+                 _parse_date(d["effective_to"]), d["content"],
+                 json.dumps(d["structured_data"])),
+            )
+    conn.commit()
+    print(f"Inserted {len(docs)} documents.")
 
-    # Prove the temporal query works
+    # prove the temporal query works
     print("\n--- Which minimum-wage decree is valid on each date? ---")
-    for qd in [date(2021, 5, 1), date(2023, 3, 1), date(2026, 6, 8)]:
-        valid = db.get_effective_documents(qd)
-        ids = [d.document_id for d in valid]
+    for qd in ["2021-05-01", "2023-03-01", "2026-06-08"]:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT document_id FROM legal_documents
+                WHERE document_type = 'Decree'
+                  AND effective_from <= %s
+                  AND (effective_to >= %s OR effective_to IS NULL);
+                """,
+                (qd, qd),
+            )
+            ids = [r[0] for r in cur.fetchall()]
         print(f"{qd}: {ids}")
 
-    db.close()
+    conn.close()
     print("\nDone. If each date returned exactly one decree, it works!")
 
 

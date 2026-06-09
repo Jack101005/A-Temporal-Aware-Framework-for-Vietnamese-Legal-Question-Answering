@@ -4,10 +4,9 @@
 --
 -- WHY THIS DESIGN:
 -- The whole thesis rests on being able to ask "which laws were valid on date X?".
--- That requires (a) effective_from / effective_to on every document, and
--- (b) a separate relationships table to model supersession + citation as a
--- graph. The pgvector column lets us do semantic search in the same database
--- instead of a separate vector store.
+-- That requires effective_from / effective_to on every document. The pgvector
+-- column lets us do semantic search in the same database. The structured_data
+-- JSONB column holds extra details (e.g. wage tables) that the UI displays.
 --
 -- RUN LATER WITH:  psql -d vn_legal -f schema.sql
 
@@ -24,6 +23,7 @@ CREATE TABLE IF NOT EXISTS legal_documents (
     effective_from  DATE,              -- when it starts being valid
     effective_to    DATE,              -- when it stops; NULL = still valid
     content         TEXT,
+    structured_data JSONB,             -- extra details (wage tables, etc.) for the UI
     embedding       vector(768)        -- PhoBERT dim; adjust to model used
 );
 
@@ -40,12 +40,8 @@ CREATE TABLE IF NOT EXISTS legal_questions (
     question_id      TEXT PRIMARY KEY,
     question_text    TEXT NOT NULL,
     answer_text      TEXT,
-    cited_doc_ids    TEXT[],           -- expected supporting documents
-    temporal_context TEXT,             -- 'current' | 'historical' | 'version-specific'
+    cited_doc_ids    TEXT[],
+    temporal_context TEXT,
     query_date       DATE,
     difficulty       TEXT
 );
-
--- Helpful indexes (add later when data grows)
--- CREATE INDEX ON legal_documents (effective_from, effective_to);
--- CREATE INDEX ON document_relationships (source_id);

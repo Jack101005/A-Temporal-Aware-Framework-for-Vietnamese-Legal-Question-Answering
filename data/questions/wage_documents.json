@@ -9,18 +9,8 @@
     "effective_to": null,
     "content": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động.",
     "structured_data": {
-      "regions": {
-        "1": 4960000,
-        "2": 4410000,
-        "3": 3860000,
-        "4": 3450000
-      },
-      "hourly": {
-        "1": 23800,
-        "2": 21200,
-        "3": 18600,
-        "4": 16600
-      },
+      "regions": {"1": 4960000, "2": 4410000, "3": 3860000, "4": 3450000},
+      "hourly": {"1": 23800, "2": 21200, "3": 18600, "4": 16600},
       "subject": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động"
     }
   },
@@ -34,18 +24,8 @@
     "effective_to": "2024-06-30",
     "content": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động.",
     "structured_data": {
-      "regions": {
-        "1": 4680000,
-        "2": 4160000,
-        "3": 3640000,
-        "4": 3250000
-      },
-      "hourly": {
-        "1": 22500,
-        "2": 20000,
-        "3": 17500,
-        "4": 15600
-      },
+      "regions": {"1": 4680000, "2": 4160000, "3": 3640000, "4": 3250000},
+      "hourly": {"1": 22500, "2": 20000, "3": 17500, "4": 15600},
       "subject": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động"
     }
   },
@@ -59,18 +39,8 @@
     "effective_to": "2022-06-30",
     "content": "Quy định mức lương tối thiểu vùng đối với người lao động làm việc theo hợp đồng lao động.",
     "structured_data": {
-      "regions": {
-        "1": 4420000,
-        "2": 3920000,
-        "3": 3430000,
-        "4": 3070000
-      },
-      "hourly": {
-        "1": null,
-        "2": null,
-        "3": null,
-        "4": null
-      },
+      "regions": {"1": 4420000, "2": 3920000, "3": 3430000, "4": 3070000},
+      "hourly": {"1": null, "2": null, "3": null, "4": null},
       "subject": "Quy định mức lương tối thiểu vùng đối với người lao động làm việc theo hợp đồng lao động"
     }
   }
