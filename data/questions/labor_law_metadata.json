@@ -8,6 +8,15 @@
     "effective_to": null,
     "subject": "Bộ luật Lao động — quy định tiêu chuẩn lao động, quyền và nghĩa vụ của người lao động, người sử dụng lao động"
   },
+  "ND_145_2020": {
+    "title": "Nghị định 145/2020/NĐ-CP",
+    "document_type": "Nghị định",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2020-12-14",
+    "effective_from": "2021-02-01",
+    "effective_to": null,
+    "subject": "Quy định chi tiết và hướng dẫn thi hành một số điều của Bộ luật Lao động về điều kiện lao động và quan hệ lao động"
+  },
   "ND_74_2024": {
     "title": "Nghị định 74/2024/NĐ-CP",
     "document_type": "Nghị định",
@@ -17,13 +26,94 @@
     "effective_to": null,
     "subject": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động"
   },
-  "ND_145_2020": {
-    "title": "Nghị định 145/2020/NĐ-CP",
+  "ND_38_2022": {
+    "title": "Nghị định 38/2022/NĐ-CP",
     "document_type": "Nghị định",
     "issuing_agency": "Chính phủ",
-    "issue_date": "2020-12-14",
-    "effective_from": "2021-02-01",
+    "issue_date": "2022-06-12",
+    "effective_from": "2022-07-01",
+    "effective_to": "2024-06-30",
+    "subject": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động"
+  },
+  "ND_90_2019": {
+    "title": "Nghị định 90/2019/NĐ-CP",
+    "document_type": "Nghị định",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2019-11-15",
+    "effective_from": "2020-01-01",
+    "effective_to": "2022-06-30",
+    "subject": "Quy định mức lương tối thiểu vùng đối với người lao động làm việc theo hợp đồng lao động"
+  },
+  "ND_135_2020": {
+    "title": "Nghị định 135/2020/NĐ-CP",
+    "document_type": "Nghị định",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2020-11-18",
+    "effective_from": "2021-01-01",
     "effective_to": null,
-    "subject": "Quy định chi tiết và hướng dẫn thi hành một số điều của Bộ luật Lao động về điều kiện lao động và quan hệ lao động"
+    "subject": "Quy định về tuổi nghỉ hưu"
+  },
+  "ND_152_2020": {
+    "title": "Nghị định 152/2020/NĐ-CP",
+    "document_type": "Nghị định",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2020-12-30",
+    "effective_from": "2021-02-15",
+    "effective_to": null,
+    "subject": "Quy định về người lao động nước ngoài làm việc tại Việt Nam và tuyển dụng, quản lý người lao động Việt Nam làm việc cho tổ chức, cá nhân nước ngoài tại Việt Nam"
+  },
+  "ND_12_2022": {
+    "title": "Nghị định 12/2022/NĐ-CP",
+    "document_type": "Nghị định",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2022-01-17",
+    "effective_from": "2022-01-17",
+    "effective_to": null,
+    "subject": "Quy định xử phạt vi phạm hành chính trong lĩnh vực lao động, bảo hiểm xã hội, người lao động Việt Nam đi làm việc ở nước ngoài theo hợp đồng"
+  },
+  "ND_83_2022": {
+    "title": "Nghị định 83/2022/NĐ-CP",
+    "document_type": "Nghị định",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2022-10-18",
+    "effective_from": "2022-10-20",
+    "effective_to": null,
+    "subject": "Quy định về nghỉ hưu ở tuổi cao hơn đối với cán bộ, công chức giữ chức vụ lãnh đạo, quản lý"
+  },
+  "ND_70_2023": {
+    "title": "Nghị định 70/2023/NĐ-CP",
+    "document_type": "Nghị định",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2023-09-18",
+    "effective_from": "2023-09-18",
+    "effective_to": null,
+    "subject": "Sửa đổi, bổ sung một số điều của Nghị định 152/2020/NĐ-CP quy định về người lao động nước ngoài làm việc tại Việt Nam"
+  },
+  "TT_09_2020": {
+    "title": "Thông tư 09/2020/TT-BLĐTBXH",
+    "document_type": "Thông tư",
+    "issuing_agency": "Bộ Lao động - Thương binh và Xã hội",
+    "issue_date": "2020-11-12",
+    "effective_from": "2021-03-15",
+    "effective_to": null,
+    "subject": "Quy định chi tiết và hướng dẫn thi hành một số điều của Bộ luật Lao động về lao động chưa thành niên"
+  },
+  "TT_10_2020": {
+    "title": "Thông tư 10/2020/TT-BLĐTBXH",
+    "document_type": "Thông tư",
+    "issuing_agency": "Bộ Lao động - Thương binh và Xã hội",
+    "issue_date": "2020-11-12",
+    "effective_from": "2021-01-01",
+    "effective_to": null,
+    "subject": "Quy định chi tiết và hướng dẫn thi hành một số điều của Bộ luật Lao động về nội dung của hợp đồng lao động, hội đồng thương lượng tập thể và nghề, công việc có ảnh hưởng xấu tới chức năng sinh sản, nuôi con"
+  },
+  "TT_11_2020": {
+    "title": "Thông tư 11/2020/TT-BLĐTBXH",
+    "document_type": "Thông tư",
+    "issuing_agency": "Bộ Lao động - Thương binh và Xã hội",
+    "issue_date": "2020-11-12",
+    "effective_from": "2021-03-01",
+    "effective_to": null,
+    "subject": "Ban hành Danh mục nghề, công việc nặng nhọc, độc hại, nguy hiểm và nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm"
   }
 }
