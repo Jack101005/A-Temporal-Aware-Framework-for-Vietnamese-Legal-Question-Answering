@@ -21,13 +21,19 @@ function App() {
   const runSearch = React.useCallback((q, d, entryOverride) => {
     const entry = entryOverride || window.matchEntry(q);
     setLoading(true);
-    setTimeout(() => {
+    setTimeout(async () => {
       if (!entry) {
         setActive(null);
         setResult({ notFound: true, lede: 'Chưa tìm thấy văn bản phù hợp với câu hỏi. Hãy thử một trong các câu hỏi gợi ý bên dưới.' });
       } else {
         setActive(entry);
-        setResult(entry.resolve(d));
+        // Minimum-wage questions go to the REAL backend; others use demo data
+        if (entry.id === 'min-wage' && window.fetchRealAnswer) {
+          const real = await window.fetchRealAnswer(entry.question, d);
+          setResult(real || entry.resolve(d));   // fallback to demo if backend off
+        } else {
+          setResult(entry.resolve(d));
+        }
       }
       setLoading(false);
     }, 820);
@@ -41,10 +47,16 @@ function App() {
   };
 
   // Re-resolve instantly when the effective date changes (the time-travel feature)
-  const onDateChange = (d) => {
+  const onDateChange = async (d) => {
     setDate(d);
     if (active && !loading) {
-      setResult(active.resolve(d));
+      // Minimum-wage uses the real backend so the date genuinely queries the DB
+      if (active.id === 'min-wage' && window.fetchRealAnswer) {
+        const real = await window.fetchRealAnswer(active.question, d);
+        setResult(real || active.resolve(d));
+      } else {
+        setResult(active.resolve(d));
+      }
       setFlash(true);
       setTimeout(() => setFlash(false), 650);
     }

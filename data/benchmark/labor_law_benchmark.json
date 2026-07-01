@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "name": "Vietnamese Labor Law Temporal QA Benchmark",
+    "version": "0.1",
+    "description": "Questions with verified ground-truth answers and the source article. Temporal questions have a query_date that changes the correct answer.",
+    "categories": ["temporal", "static"],
+    "verified_legend": "false = answer must still be checked against the source document"
+  },
+  "questions": [
+    {
+      "id": "Q001", "question": "Mức lương tối thiểu tháng vùng I là bao nhiêu?",
+      "query_date": "2021-05-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_90_2019", "gold_article": "Điều 3",
+      "expected_answer": "4.420.000 đồng/tháng", "expected_figure": "4.420.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q002", "question": "Mức lương tối thiểu tháng vùng I là bao nhiêu?",
+      "query_date": "2023-03-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_38_2022", "gold_article": "Điều 3",
+      "expected_answer": "4.680.000 đồng/tháng", "expected_figure": "4.680.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q003", "question": "Mức lương tối thiểu tháng vùng I là bao nhiêu?",
+      "query_date": "2025-06-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_74_2024", "gold_article": "Điều 3",
+      "expected_answer": "4.960.000 đồng/tháng", "expected_figure": "4.960.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q004", "question": "Mức lương tối thiểu tháng vùng II là bao nhiêu?",
+      "query_date": "2021-05-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_90_2019", "gold_article": "Điều 3",
+      "expected_answer": "3.920.000 đồng/tháng", "expected_figure": "3.920.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q005", "question": "Mức lương tối thiểu tháng vùng II là bao nhiêu?",
+      "query_date": "2023-03-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_38_2022", "gold_article": "Điều 3",
+      "expected_answer": "4.160.000 đồng/tháng", "expected_figure": "4.160.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q006", "question": "Mức lương tối thiểu tháng vùng II là bao nhiêu?",
+      "query_date": "2025-06-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_74_2024", "gold_article": "Điều 3",
+      "expected_answer": "4.410.000 đồng/tháng", "expected_figure": "4.410.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q007", "question": "Mức lương tối thiểu tháng vùng III là bao nhiêu?",
+      "query_date": "2023-03-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_38_2022", "gold_article": "Điều 3",
+      "expected_answer": "3.640.000 đồng/tháng", "expected_figure": "3.640.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q008", "question": "Mức lương tối thiểu tháng vùng III là bao nhiêu?",
+      "query_date": "2025-06-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_74_2024", "gold_article": "Điều 3",
+      "expected_answer": "3.860.000 đồng/tháng", "expected_figure": "3.860.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q009", "question": "Mức lương tối thiểu tháng vùng IV là bao nhiêu?",
+      "query_date": "2025-06-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_74_2024", "gold_article": "Điều 3",
+      "expected_answer": "3.450.000 đồng/tháng", "expected_figure": "3.450.000",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q010", "question": "Mức lương tối thiểu giờ vùng I là bao nhiêu?",
+      "query_date": "2025-06-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_74_2024", "gold_article": "Điều 3",
+      "expected_answer": "23.800 đồng/giờ", "expected_figure": "23.800",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q011", "question": "Mức lương tối thiểu giờ vùng I là bao nhiêu?",
+      "query_date": "2023-03-01", "category": "temporal", "topic": "minimum_wage",
+      "gold_document_id": "ND_38_2022", "gold_article": "Điều 3",
+      "expected_answer": "22.500 đồng/giờ", "expected_figure": "22.500",
+      "verified": false, "notes": ""
+    },
+    {
+      "id": "Q012", "question": "Mức lương tối thiểu được định nghĩa là gì?",
+      "query_date": "2025-06-01", "category": "static", "topic": "minimum_wage",
+      "gold_document_id": "BLLD_2019", "gold_article": "Điều 91",
+      "expected_answer": "Mức lương thấp nhất được trả cho người lao động làm công việc giản đơn nhất trong điều kiện lao động bình thường.",
+      "expected_figure": "", "verified": false, "notes": ""
+    },
+    {
+      "id": "Q013", "question": "Tuổi nghỉ hưu của người lao động trong điều kiện lao động bình thường được quy định thế nào?",
+      "query_date": "2025-06-01", "category": "static", "topic": "retirement",
+      "gold_document_id": "BLLD_2019", "gold_article": "Điều 169",
+      "expected_answer": "Tăng theo lộ trình đến 62 tuổi với nam (2028) và 60 tuổi với nữ (2035).",
+      "expected_figure": "", "verified": false, "notes": "Cần đối chiếu lộ trình cụ thể trong ND_135_2020"
+    },
+    {
+      "id": "Q014", "question": "Điều kiện để người lao động nước ngoài làm việc tại Việt Nam là gì?",
+      "query_date": "2025-06-01", "category": "static", "topic": "foreign_worker",
+      "gold_document_id": "BLLD_2019", "gold_article": "Điều 151",
+      "expected_answer": "Đủ 18 tuổi, có năng lực hành vi dân sự đầy đủ, có trình độ chuyên môn, có giấy phép lao động (trừ trường hợp miễn).",
+      "expected_figure": "", "verified": false, "notes": ""
+    },
+    {
+      "id": "Q015", "question": "Trường hợp nào người lao động nước ngoài không thuộc diện cấp giấy phép lao động?",
+      "query_date": "2025-06-01", "category": "static", "topic": "foreign_worker",
+      "gold_document_id": "BLLD_2019", "gold_article": "Điều 154",
+      "expected_answer": "Một số trường hợp như chủ sở hữu công ty, thành viên góp vốn, trưởng văn phòng đại diện, chuyên gia vào dưới 3 tháng, v.v.",
+      "expected_figure": "", "verified": false, "notes": "Đối chiếu thêm ND_152_2020 và sửa đổi ND_70_2023"
+    },
+    {
+      "id": "Q016", "question": "Thời giờ làm việc bình thường tối đa trong một ngày và một tuần là bao nhiêu?",
+      "query_date": "2025-06-01", "category": "static", "topic": "working_hours",
+      "gold_document_id": "BLLD_2019", "gold_article": "Điều 105",
+      "expected_answer": "Không quá 8 giờ/ngày và 48 giờ/tuần.",
+      "expected_figure": "", "verified": false, "notes": ""
+    },
+    {
+      "id": "Q017", "question": "Hợp đồng lao động phải có những nội dung chủ yếu nào?",
+      "query_date": "2025-06-01", "category": "static", "topic": "contract",
+      "gold_document_id": "BLLD_2019", "gold_article": "Điều 21",
+      "expected_answer": "Thông tin các bên, công việc, địa điểm, thời hạn, mức lương, thời giờ làm việc nghỉ ngơi, bảo hiểm xã hội, v.v.",
+      "expected_figure": "", "verified": false, "notes": "Đối chiếu thêm TT_10_2020"
+    },
+    {
+      "id": "Q018", "question": "Người chưa đủ 15 tuổi được giao kết hợp đồng lao động trong điều kiện nào?",
+      "query_date": "2025-06-01", "category": "static", "topic": "minor",
+      "gold_document_id": "BLLD_2019", "gold_article": "Điều 145",
+      "expected_answer": "Phải có sự đồng ý bằng văn bản của người đại diện theo pháp luật và chỉ làm công việc phù hợp.",
+      "expected_figure": "", "verified": false, "notes": "Đối chiếu thêm TT_09_2020"
+    },
+    {
+      "id": "Q019", "question": "Người sử dụng lao động trả lương thấp hơn mức lương tối thiểu bị xử phạt thế nào?",
+      "query_date": "2025-06-01", "category": "static", "topic": "penalty",
+      "gold_document_id": "ND_12_2022", "gold_article": "Điều 17",
+      "expected_answer": "Bị phạt tiền theo mức quy định (tùy số người lao động bị vi phạm) và buộc trả đủ tiền lương.",
+      "expected_figure": "", "verified": false, "notes": "Cần đối chiếu mức phạt cụ thể trong ND_12_2022"
+    },
+    {
+      "id": "Q020", "question": "Giấy phép lao động cho người nước ngoài có thời hạn tối đa bao lâu?",
+      "query_date": "2025-06-01", "category": "static", "topic": "foreign_worker",
+      "gold_document_id": "ND_152_2020", "gold_article": "Điều 10",
+      "expected_answer": "Tối đa 2 năm.",
+      "expected_figure": "", "verified": false, "notes": "Đối chiếu ND_152_2020 và sửa đổi ND_70_2023"
+    }
+  ]
+}

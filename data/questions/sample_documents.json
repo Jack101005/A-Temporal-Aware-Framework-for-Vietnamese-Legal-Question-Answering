@@ -1,77 +1,38 @@
 [
   {
-    "document_id": "ND_74_2024",
-    "title": "Nghị định 74/2024/NĐ-CP",
-    "document_type": "Decree",
-    "issuing_agency": "Chính phủ",
-    "issue_date": "2024-06-30",
-    "effective_from": "2024-07-01",
-    "effective_to": null,
-    "content": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động.",
-    "structured_data": {
-      "regions": {
-        "1": 4960000,
-        "2": 4410000,
-        "3": 3860000,
-        "4": 3450000
-      },
-      "hourly": {
-        "1": 23800,
-        "2": 21200,
-        "3": 18600,
-        "4": 16600
-      },
-      "subject": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động"
-    }
-  },
-  {
-    "document_id": "ND_38_2022",
-    "title": "Nghị định 38/2022/NĐ-CP",
-    "document_type": "Decree",
-    "issuing_agency": "Chính phủ",
-    "issue_date": "2022-06-12",
-    "effective_from": "2022-07-01",
-    "effective_to": "2024-06-30",
-    "content": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động.",
-    "structured_data": {
-      "regions": {
-        "1": 4680000,
-        "2": 4160000,
-        "3": 3640000,
-        "4": 3250000
-      },
-      "hourly": {
-        "1": 22500,
-        "2": 20000,
-        "3": 17500,
-        "4": 15600
-      },
-      "subject": "Quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động"
-    }
-  },
-  {
     "document_id": "ND_90_2019",
-    "title": "Nghị định 90/2019/NĐ-CP",
+    "title": "Nghị định 90/2019/NĐ-CP quy định mức lương tối thiểu vùng",
     "document_type": "Decree",
     "issuing_agency": "Chính phủ",
     "issue_date": "2019-11-15",
     "effective_from": "2020-01-01",
     "effective_to": "2022-06-30",
-    "content": "Quy định mức lương tối thiểu vùng đối với người lao động làm việc theo hợp đồng lao động.",
-    "structured_data": {
-      "regions": {
-        "1": 4420000,
-        "2": 3920000,
-        "3": 3430000,
-        "4": 3070000
-      },
-      "hourly": {
-        "1": null,
-        "2": null,
-        "3": null,
-        "4": null
-      },
-      "subject": "Quy định mức lương tối thiểu vùng đối với người lao động làm việc theo hợp đồng lao động"
-    }
+    "content": "Mức lương tối thiểu vùng I là 4.420.000 đồng/tháng."
+  },
+  {
+    "document_id": "ND_38_2022",
+    "title": "Nghị định 38/2022/NĐ-CP quy định mức lương tối thiểu vùng",
+    "document_type": "Decree",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2022-06-12",
+    "effective_from": "2022-07-01",
+    "effective_to": "2024-06-30",
+    "content": "Mức lương tối thiểu vùng I là 4.680.000 đồng/tháng.",
+    "supersedes": [
+      "ND_90_2019"
+    ]
+  },
+  {
+    "document_id": "ND_74_2024",
+    "title": "Nghị định 74/2024/NĐ-CP quy định mức lương tối thiểu vùng",
+    "document_type": "Decree",
+    "issuing_agency": "Chính phủ",
+    "issue_date": "2024-06-30",
+    "effective_from": "2024-07-01",
+    "effective_to": null,
+    "content": "Mức lương tối thiểu vùng I là 4.960.000 đồng/tháng.",
+    "supersedes": [
+      "ND_38_2022"
+    ]
   }
 ]
