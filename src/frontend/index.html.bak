@@ -31,7 +31,6 @@
   <script type="text/babel" src="data.jsx"></script>
   <script type="text/babel" src="components.jsx"></script>
   <script type="text/babel" src="views.jsx"></script>
-  <script type="text/babel" src="chat_view.jsx"></script>
   <script type="text/babel" src="app.jsx"></script>
 </body>
 

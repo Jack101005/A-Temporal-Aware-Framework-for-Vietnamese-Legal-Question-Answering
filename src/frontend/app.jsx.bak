@@ -11,13 +11,10 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const today = '2026-06-08';
 
-  // mode: 'search' = traditional structured search, 'chat' = AI chatbot
-  const [mode, setMode] = React.useState('search');
-
   const [query, setQuery] = React.useState(window.ENTRIES[0].question);
   const [date, setDate] = React.useState(today);
   const [loading, setLoading] = React.useState(false);
-  const [active, setActive] = React.useState(window.ENTRIES[0]);
+  const [active, setActive] = React.useState(window.ENTRIES[0]); // pre-load min-wage example
   const [result, setResult] = React.useState(window.ENTRIES[0].resolve(today));
   const [flash, setFlash] = React.useState(false);
 
@@ -30,9 +27,10 @@ function App() {
         setResult({ notFound: true, lede: 'Chưa tìm thấy văn bản phù hợp với câu hỏi. Hãy thử một trong các câu hỏi gợi ý bên dưới.' });
       } else {
         setActive(entry);
+        // Minimum-wage questions go to the REAL backend; others use demo data
         if (entry.id === 'min-wage' && window.fetchRealAnswer) {
           const real = await window.fetchRealAnswer(entry.question, d);
-          setResult(real || entry.resolve(d));
+          setResult(real || entry.resolve(d));   // fallback to demo if backend off
         } else {
           setResult(entry.resolve(d));
         }
@@ -48,9 +46,11 @@ function App() {
     runSearch(entry.question, date, entry);
   };
 
+  // Re-resolve instantly when the effective date changes (the time-travel feature)
   const onDateChange = async (d) => {
     setDate(d);
-    if (active && !loading && mode === 'search') {
+    if (active && !loading) {
+      // Minimum-wage uses the real backend so the date genuinely queries the DB
       if (active.id === 'min-wage' && window.fetchRealAnswer) {
         const real = await window.fetchRealAnswer(active.question, d);
         setResult(real || active.resolve(d));
@@ -80,63 +80,31 @@ function App() {
             <p className="hero-sub">Chọn ngày áp dụng để biết quy định đang có hiệu lực vào đúng mốc thời gian đó — không phải phỏng đoán.</p>
           </div>
 
-          {/* NEW: tab switcher between traditional search and AI chatbot */}
-          <div className="mode-tabs" role="tablist">
-            <button
-              role="tab"
-              className={`mode-tab ${mode === 'search' ? 'is-active' : ''}`}
-              aria-selected={mode === 'search'}
-              onClick={() => setMode('search')}
-            >
-              <Icon name="search" size={16} stroke={1.7} />
-              <span>Tra cứu</span>
-              <span className="mode-tab-sub">Tức thì, có dữ liệu cấu trúc</span>
-            </button>
-            <button
-              role="tab"
-              className={`mode-tab ${mode === 'chat' ? 'is-active' : ''}`}
-              aria-selected={mode === 'chat'}
-              onClick={() => setMode('chat')}
-            >
-              <Icon name="sparkle" size={16} stroke={1.7} />
-              <span>Hỏi trợ lý AI</span>
-              <span className="mode-tab-sub">Trả lời tự nhiên, mọi chủ đề</span>
-            </button>
-          </div>
+          <SearchBar
+            query={query} setQuery={setQuery}
+            date={date} setDate={onDateChange}
+            onSubmit={onSubmit} loading={loading}
+          />
 
-          {mode === 'search' && (
-            <>
-              <SearchBar
-                query={query} setQuery={setQuery}
-                date={date} setDate={onDateChange}
-                onSubmit={onSubmit} loading={loading}
-              />
+          <Suggestions entries={window.ENTRIES} activeId={active && active.id} onPick={onPick} />
 
-              <Suggestions entries={window.ENTRIES} activeId={active && active.id} onPick={onPick} />
-
-              <div className={`result-area ${flash ? 'is-flash' : ''}`}>
-                {loading && (
-                  <div className="answer-card skeleton">
-                    <div className="sk-line w40" />
-                    <div className="sk-big" />
-                    <div className="sk-line w90" />
-                    <div className="sk-line w75" />
-                  </div>
-                )}
-                {!loading && showAnswer && (
-                  <AnswerCard
-                    entry={active}
-                    result={t.showRegions ? result : { ...result, regions: null }}
-                    date={date}
-                  />
-                )}
+          <div className={`result-area ${flash ? 'is-flash' : ''}`}>
+            {loading && (
+              <div className="answer-card skeleton">
+                <div className="sk-line w40" />
+                <div className="sk-big" />
+                <div className="sk-line w90" />
+                <div className="sk-line w75" />
               </div>
-            </>
-          )}
-
-          {mode === 'chat' && (
-            <ChatView date={date} setDate={setDate} />
-          )}
+            )}
+            {!loading && showAnswer && (
+              <AnswerCard
+                entry={active}
+                result={t.showRegions ? result : { ...result, regions: null }}
+                date={date}
+              />
+            )}
+          </div>
         </main>
 
         <footer className="app-foot">

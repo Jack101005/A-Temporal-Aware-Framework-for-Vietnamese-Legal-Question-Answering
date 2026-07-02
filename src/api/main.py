@@ -3,10 +3,10 @@ main.py  (FastAPI)
 ==================
 The bridge between the UI and the PostgreSQL database.
 
-The UI sends a question + a date. This API:
-  1. figures out what the question is about (currently: minimum wage)
-  2. runs the temporal query to find the decree valid on that date
-  3. returns the answer in the exact shape the UI expects
+Two endpoints:
+  /ask   — original structured minimum-wage answer (keyword-routed)
+  /chat  — full RAG + local LLM (Ollama): answers ANY labor-law question,
+           grounded in temporally-filtered retrieved chunks.
 
 Run with:
     uvicorn src.api.main:app --reload --port 8000
@@ -15,6 +15,8 @@ Run with:
 from __future__ import annotations
 
 import json
+import urllib.request
+import urllib.error
 from datetime import date
 
 from fastapi import FastAPI
@@ -26,19 +28,20 @@ from configs.settings import DATABASE_URL
 
 app = FastAPI(title="Vietnamese Legal Temporal RAG")
 
-# Allow the UI (running on localhost:3000) to call this API (localhost:8000)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # demo only; tighten for production
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# ============================================================================
+# Original /ask endpoint (unchanged)
+# ============================================================================
 
-# ---- request / response shapes ----
 class AskRequest(BaseModel):
     question: str
-    date: str                      # "YYYY-MM-DD"
+    date: str
     region: str = "1"
 
 
@@ -51,7 +54,6 @@ def _connect():
 
 
 def _build_wage_answer(query_date: str, region: str = "1") -> dict:
-    """Find the minimum-wage decree valid on query_date, format for the UI."""
     conn = _connect()
     try:
         with conn.cursor() as cur:
@@ -92,21 +94,14 @@ def _build_wage_answer(query_date: str, region: str = "1") -> dict:
                 "không được trả thấp hơn mức này.",
         "regions": sd["regions"],
         "sources": [
-            {
-                "title": title, "kind": "Nghị định",
-                "subject": sd.get("subject", ""),
-                "from": str(eff_from), "to": (str(eff_to) if eff_to else None),
-            },
-            {
-                "title": "Bộ luật Lao động (Luật 45/2019/QH14)", "kind": "Luật",
-                "subject": "Điều 91 — Mức lương tối thiểu",
-                "from": "2021-01-01", "to": None,
-            },
+            {"title": title, "kind": "Nghị định", "subject": sd.get("subject", ""),
+             "from": str(eff_from), "to": (str(eff_to) if eff_to else None)},
+            {"title": "Bộ luật Lao động (Luật 45/2019/QH14)", "kind": "Luật",
+             "subject": "Điều 91 — Mức lương tối thiểu", "from": "2021-01-01", "to": None},
         ],
     }
 
 
-# ---- endpoints ----
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -114,22 +109,123 @@ def health():
 
 @app.post("/ask")
 def ask(req: AskRequest):
-    """Main endpoint. For now it answers minimum-wage questions from the DB."""
-    # Simple keyword routing (only minimum wage is wired to the DB for now)
     q = req.question.lower()
     wage_kw = ["lương tối thiểu", "luong toi thieu", "lương vùng", "mức lương",
                "minimum wage", "vùng 1", "vung 1", "lương cơ bản"]
     if any(kw in q for kw in wage_kw):
         answer = _build_wage_answer(req.date, req.region)
         return {"topic": "min-wage", "query_date": req.date, "answer": answer}
+    return {"topic": "unknown", "query_date": req.date,
+            "answer": {"notFound": True,
+                       "lede": "Chủ đề này chưa được kết nối với cơ sở dữ liệu thật. "
+                               "Hiện tại hệ thống đã hỗ trợ câu hỏi về lương tối thiểu vùng."}}
 
-    # other topics not yet wired to the DB
-    return {
-        "topic": "unknown",
-        "query_date": req.date,
-        "answer": {
-            "notFound": True,
-            "lede": "Chủ đề này chưa được kết nối với cơ sở dữ liệu thật. "
-                    "Hiện tại hệ thống đã hỗ trợ câu hỏi về lương tối thiểu vùng.",
-        },
-    }
+
+# ============================================================================
+# NEW /chat endpoint — full RAG + local LLM (Ollama)
+# ============================================================================
+
+EMBED_MODEL_NAME = "bkai-foundation-models/vietnamese-bi-encoder"
+OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_MODEL = "qwen2.5:3b"
+TOP_K = 4
+
+_embed_model = None   # lazy-loaded on first /chat call
+
+
+def _get_model():
+    """Load the embedding model once, on first use."""
+    global _embed_model
+    if _embed_model is None:
+        from sentence_transformers import SentenceTransformer
+        _embed_model = SentenceTransformer(EMBED_MODEL_NAME)
+    return _embed_model
+
+
+class ChatRequest(BaseModel):
+    question: str
+    date: str                       # "YYYY-MM-DD"
+
+
+def _retrieve_chunks(query_date: str, vec: str, k: int = TOP_K):
+    conn = _connect()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT c.document_id, c.article_label, c.content, d.title
+                FROM document_chunks c
+                JOIN legal_documents d ON c.document_id = d.document_id
+                WHERE d.effective_from <= %s
+                  AND (d.effective_to >= %s OR d.effective_to IS NULL)
+                ORDER BY c.embedding <=> %s::vector
+                LIMIT %s;
+                """,
+                (query_date, query_date, vec, k),
+            )
+            return cur.fetchall()
+    finally:
+        conn.close()
+
+
+def _build_prompt(question: str, query_date: str, chunks) -> str:
+    ctx = "\n\n".join(
+        f"[{doc_id} - {label}]\n{content}"
+        for doc_id, label, content, title in chunks
+    )
+    return f"""Bạn là trợ lý pháp lý về luật lao động Việt Nam. Hãy trả lời câu hỏi CHỈ dựa trên nội dung các văn bản luật được cung cấp bên dưới. Nếu thông tin không có trong các văn bản đó, hãy trả lời "Tôi không có đủ thông tin trong cơ sở dữ liệu để trả lời câu hỏi này". Luôn trích dẫn tên văn bản và Điều mà bạn dựa vào.
+
+NGÀY ÁP DỤNG: {query_date}
+
+CÁC VĂN BẢN LIÊN QUAN (đã lọc theo hiệu lực trên ngày trên):
+{ctx}
+
+CÂU HỎI: {question}
+
+TRẢ LỜI (ngắn gọn, chính xác, có trích dẫn):"""
+
+
+def _ask_ollama(prompt: str) -> str:
+    data = json.dumps({
+        "model": OLLAMA_MODEL,
+        "prompt": prompt,
+        "stream": False,
+        "options": {"temperature": 0.1},
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        OLLAMA_URL, data=data, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=180) as resp:
+        return json.loads(resp.read()).get("response", "").strip()
+
+
+@app.post("/chat")
+def chat(req: ChatRequest):
+    """Full RAG: temporal retrieval + local LLM answer."""
+    model = _get_model()
+    emb = model.encode([req.question], normalize_embeddings=True)[0]
+    vec = "[" + ",".join(f"{x:.6f}" for x in emb) + "]"
+
+    chunks = _retrieve_chunks(req.date, vec)
+    if not chunks:
+        return {"answer": "Tại ngày đã chọn, hệ thống không tìm thấy văn bản luật "
+                          "nào còn hiệu lực. Vui lòng chọn mốc từ 01/01/2020 trở đi.",
+                "sources": [], "query_date": req.date}
+
+    prompt = _build_prompt(req.question, req.date, chunks)
+    try:
+        answer = _ask_ollama(prompt)
+    except urllib.error.URLError:
+        return {"answer": "Không kết nối được với mô hình ngôn ngữ (Ollama). "
+                          "Hãy đảm bảo Ollama đang chạy.",
+                "sources": [], "query_date": req.date, "error": "ollama_unreachable"}
+
+    # dedupe sources by (document, article)
+    seen, sources = set(), []
+    for doc_id, label, content, title in chunks:
+        key = (doc_id, label)
+        if key in seen:
+            continue
+        seen.add(key)
+        sources.append({"document_id": doc_id, "article": label, "title": title})
+
+    return {"answer": answer, "sources": sources, "query_date": req.date}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trợ lý Luật Lao động — Hỏi đáp theo thời điểm</title>
+<style>
+  :root{
+    --ink:#16233a; --ink-soft:#42506a; --paper:#f6f3ec; --card:#fffdf8;
+    --line:#e2dccf; --accent:#9a2a2a; --accent-soft:#f2e4e0;
+    --gold:#b0895a; --ok:#2f6b46;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;
+    background:var(--paper); color:var(--ink); line-height:1.6; min-height:100vh;}
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+  header{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:8px}
+  .eyebrow{font-family:ui-sans-serif,system-ui,sans-serif;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-size:30px;line-height:1.15;margin-top:6px;font-weight:700}
+  .sub{font-family:ui-sans-serif,system-ui,sans-serif;font-size:14px;
+    color:var(--ink-soft);margin-top:6px}
+  .grid{display:grid;grid-template-columns:1fr 1.25fr;gap:24px;margin-top:28px}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+  label.field{font-family:ui-sans-serif,system-ui,sans-serif;font-size:12px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);
+    font-weight:700;display:block;margin-bottom:8px}
+  .datebox{background:var(--accent-soft);border:1.5px solid var(--accent);
+    border-radius:8px;padding:14px 16px;margin-bottom:20px}
+  .datebox .field{color:var(--accent)}
+  input[type=date]{font-family:inherit;font-size:20px;font-weight:700;color:var(--ink);
+    border:none;background:transparent;width:100%;outline:none}
+  .hint{font-family:ui-sans-serif,system-ui,sans-serif;font-size:12px;
+    color:var(--ink-soft);margin-top:6px}
+  textarea{width:100%;font-family:inherit;font-size:17px;color:var(--ink);
+    border:1px solid var(--line);border-radius:8px;padding:12px 14px;resize:vertical;
+    min-height:88px;background:#fff;outline:none}
+  textarea:focus{border-color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .chip{font-family:ui-sans-serif,system-ui,sans-serif;font-size:13px;
+    border:1px solid var(--line);background:#fff;border-radius:999px;
+    padding:6px 12px;cursor:pointer;color:var(--ink-soft)}
+  .chip:hover{border-color:var(--accent);color:var(--accent)}
+  button.ask{font-family:ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:700;
+    background:var(--ink);color:#fff;border:none;border-radius:8px;padding:13px 20px;
+    cursor:pointer;margin-top:16px;width:100%}
+  button.ask:hover{background:#0f1830}
+  button.ask:disabled{opacity:.55;cursor:not-allowed}
+  .answer-title{font-family:ui-sans-serif,system-ui,sans-serif;font-size:12px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+    font-weight:700;margin-bottom:12px}
+  .answer{font-size:18px;white-space:pre-wrap;min-height:60px}
+  .placeholder{color:var(--ink-soft);font-style:italic}
+  .loading{display:flex;align-items:center;gap:10px;color:var(--accent);
+    font-family:ui-sans-serif,system-ui,sans-serif;font-size:14px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);
+    animation:pulse 1s infinite ease-in-out}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+  .sources{margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+  .src{display:flex;gap:10px;align-items:baseline;padding:8px 0;
+    font-family:ui-sans-serif,system-ui,sans-serif;font-size:14px}
+  .src .tag{font-size:11px;font-weight:700;color:var(--ok);
+    background:#e8f1eb;border-radius:4px;padding:2px 7px;white-space:nowrap}
+  .src .meta{color:var(--ink)}
+  .err{color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif;font-size:14px}
+  footer{margin-top:40px;font-family:ui-sans-serif,system-ui,sans-serif;
+    font-size:12px;color:var(--ink-soft);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Temporal-Aware Legal RAG · VGU</div>
+    <h1>Trợ lý Luật Lao động Việt Nam</h1>
+    <div class="sub">Hỏi đáp pháp luật lao động — trả lời theo đúng văn bản còn hiệu lực vào ngày bạn chọn.</div>
+  </header>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="datebox">
+        <label class="field" for="date">Áp dụng luật vào ngày</label>
+        <input type="date" id="date">
+        <div class="hint">Đổi ngày để xem luật thay đổi theo thời gian.</div>
+      </div>
+
+      <label class="field" for="q">Câu hỏi của bạn</label>
+      <textarea id="q" placeholder="Ví dụ: Mức lương tối thiểu vùng 1 là bao nhiêu?"></textarea>
+
+      <div class="chips" id="chips">
+        <span class="chip">Mức lương tối thiểu vùng 1 là bao nhiêu?</span>
+        <span class="chip">Tuổi nghỉ hưu được quy định thế nào?</span>
+        <span class="chip">Thời giờ làm việc tối đa một ngày?</span>
+        <span class="chip">Người nước ngoài cần giấy phép lao động không?</span>
+      </div>
+
+      <button class="ask" id="askBtn">Tra cứu</button>
+    </div>
+
+    <div class="panel">
+      <div class="answer-title">Trả lời</div>
+      <div class="answer" id="answer">
+        <span class="placeholder">Câu trả lời sẽ hiện ở đây, kèm trích dẫn văn bản luật.</span>
+      </div>
+      <div id="sources"></div>
+    </div>
+  </div>
+
+  <footer>Câu trả lời được tạo bởi mô hình ngôn ngữ dựa trên văn bản luật đã truy xuất. Chỉ mang tính tham khảo.</footer>
+</div>
+
+<script>
+const API = 'http://localhost:8000/chat';
+const dateEl = document.getElementById('date');
+const qEl = document.getElementById('q');
+const answerEl = document.getElementById('answer');
+const sourcesEl = document.getElementById('sources');
+const askBtn = document.getElementById('askBtn');
+
+dateEl.value = new Date().toISOString().slice(0,10);
+
+document.getElementById('chips').addEventListener('click', e => {
+  if(e.target.classList.contains('chip')){ qEl.value = e.target.textContent; }
+});
+
+async function ask(){
+  const question = qEl.value.trim();
+  const date = dateEl.value;
+  if(!question){ qEl.focus(); return; }
+
+  askBtn.disabled = true;
+  sourcesEl.innerHTML = '';
+  answerEl.innerHTML =
+    '<div class="loading"><span class="dot"></span>Đang tra cứu văn bản và soạn câu trả lời… (khoảng 10–30 giây)</div>';
+
+  try{
+    const res = await fetch(API, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ question, date })
+    });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+
+    answerEl.textContent = data.answer || '(không có câu trả lời)';
+
+    if(data.sources && data.sources.length){
+      let html = '<div class="sources"><div class="answer-title">Nguồn trích dẫn — văn bản còn hiệu lực ngày '
+                 + data.query_date + '</div>';
+      data.sources.forEach(s => {
+        html += '<div class="src"><span class="tag">'+s.document_id+'</span>'
+              + '<span class="meta"><strong>'+s.article+'</strong> — '+(s.title||'')+'</span></div>';
+      });
+      html += '</div>';
+      sourcesEl.innerHTML = html;
+    }
+  }catch(err){
+    answerEl.innerHTML = '<div class="err">Không kết nối được với hệ thống. '
+      + 'Hãy kiểm tra: (1) API đang chạy ở cổng 8000, (2) Ollama đang chạy, (3) PostgreSQL đang bật.<br>'
+      + 'Chi tiết: '+err.message+'</div>';
+  }finally{
+    askBtn.disabled = false;
+  }
+}
+
+askBtn.addEventListener('click', ask);
+qEl.addEventListener('keydown', e => { if(e.key==='Enter' && (e.metaKey||e.ctrlKey)) ask(); });
+</script>
+</body>
+</html>
