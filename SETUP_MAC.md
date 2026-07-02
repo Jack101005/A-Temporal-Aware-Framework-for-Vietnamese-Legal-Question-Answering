@@ -70,3 +70,16 @@ That is the foundation of the entire thesis — you can show this to Dr. Tam.
 
 Once the above works, the next step is embedding the documents with PhoBERT
 so we can search by meaning. We'll write that script together next.
+
+
+## 8. How can we run it
+
+~/Desktop/vn-legal-rag/start_all.sh
+
+it will run 3 files 
+
+1) Ollama
+2) The uvicorn
+3) The UI
+
+=> They will all run at the same time 
