@@ -1,9 +1,15 @@
 """
 main.py  (FastAPI)
 ==================
+The bridge between the UI and the PostgreSQL database.
+
 Two endpoints:
   /ask   — original structured minimum-wage answer (keyword-routed)
-  /chat  — full RAG + local LLM (Ollama) with multi-turn conversation history
+  /chat  — full RAG + local LLM (Ollama): answers ANY labor-law question,
+           grounded in temporally-filtered retrieved chunks.
+
+Run with:
+    uvicorn src.api.main:app --reload --port 8000
 """
 
 from __future__ import annotations
@@ -11,7 +17,7 @@ from __future__ import annotations
 import json
 import urllib.request
 import urllib.error
-from typing import List, Optional
+from datetime import date
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -30,7 +36,7 @@ app.add_middleware(
 )
 
 # ============================================================================
-# /ask endpoint (unchanged)
+# Original /ask endpoint (unchanged)
 # ============================================================================
 
 class AskRequest(BaseModel):
@@ -116,19 +122,19 @@ def ask(req: AskRequest):
 
 
 # ============================================================================
-# /chat endpoint — RAG + LLM with multi-turn history
+# NEW /chat endpoint — full RAG + local LLM (Ollama)
 # ============================================================================
 
 EMBED_MODEL_NAME = "bkai-foundation-models/vietnamese-bi-encoder"
-OLLAMA_URL = "http://localhost:11434/api/chat"
+OLLAMA_URL = "http://localhost:11434/api/generate"
 OLLAMA_MODEL = "qwen2.5:3b"
 TOP_K = 4
-MAX_HISTORY_TURNS = 5   # keep the last 5 user/assistant pairs
 
-_embed_model = None
+_embed_model = None   # lazy-loaded on first /chat call
 
 
 def _get_model():
+    """Load the embedding model once, on first use."""
     global _embed_model
     if _embed_model is None:
         from sentence_transformers import SentenceTransformer
@@ -136,15 +142,9 @@ def _get_model():
     return _embed_model
 
 
-class ChatTurn(BaseModel):
-    role: str        # 'user' or 'assistant'
-    content: str
-
-
 class ChatRequest(BaseModel):
     question: str
-    date: str
-    history: Optional[List[ChatTurn]] = None    # prior turns from the UI
+    date: str                       # "YYYY-MM-DD"
 
 
 def _retrieve_chunks(query_date: str, vec: str, k: int = TOP_K):
@@ -168,63 +168,39 @@ def _retrieve_chunks(query_date: str, vec: str, k: int = TOP_K):
         conn.close()
 
 
-SYSTEM_PROMPT = """Bạn là một trợ lý pháp lý thân thiện chuyên về luật lao động Việt Nam. Bạn trò chuyện với người dùng một cách tự nhiên, rõ ràng, giống như đang giải thích cho một người bạn.
-
-QUY TẮC:
-1. CHỈ trả lời dựa trên nội dung các văn bản luật được cung cấp trong mỗi lượt hỏi. Không bịa.
-2. Nếu thông tin không có trong văn bản được cung cấp, hãy nói thẳng "Tôi không có đủ thông tin trong cơ sở dữ liệu để trả lời câu hỏi này" — đừng đoán.
-3. LUÔN trích dẫn cụ thể: tên văn bản (ví dụ ND_74_2024) và Điều số.
-4. Trả lời tự nhiên, thân thiện. Có thể giải thích thêm, đưa ví dụ nếu giúp người đọc hiểu rõ hơn. Không cần liệt kê cứng nhắc.
-5. Ngôn ngữ: tiếng Việt tự nhiên, xưng "tôi" hoặc "trợ lý", gọi người dùng là "bạn".
-6. Nếu người dùng hỏi tiếp về câu trước (ví dụ "vậy còn vùng 2 thì sao?"), hãy dựa vào lịch sử hội thoại và văn bản mới nhất để trả lời.
-7. Đừng trả lời câu hỏi ngoài phạm vi luật lao động Việt Nam. Nếu người dùng hỏi chuyện khác, hãy lịch sự nói bạn chỉ hỗ trợ về luật lao động."""
-
-
-def _build_messages(question: str, query_date: str, chunks, history: List[ChatTurn]):
-    """Build the messages list for Ollama /api/chat.
-    Structure: system → prior history (trimmed) → new user message with context.
-    """
+def _build_prompt(question: str, query_date: str, chunks) -> str:
     ctx = "\n\n".join(
         f"[{doc_id} - {label}]\n{content}"
         for doc_id, label, content, title in chunks
     )
-    user_content = f"""NGÀY ÁP DỤNG LUẬT: {query_date}
+    return f"""Bạn là trợ lý pháp lý về luật lao động Việt Nam. Hãy trả lời câu hỏi CHỈ dựa trên nội dung các văn bản luật được cung cấp bên dưới. Nếu thông tin không có trong các văn bản đó, hãy trả lời "Tôi không có đủ thông tin trong cơ sở dữ liệu để trả lời câu hỏi này". Luôn trích dẫn tên văn bản và Điều mà bạn dựa vào.
 
-CÁC VĂN BẢN LUẬT LIÊN QUAN (đã lọc theo hiệu lực trên ngày trên):
+NGÀY ÁP DỤNG: {query_date}
+
+CÁC VĂN BẢN LIÊN QUAN (đã lọc theo hiệu lực trên ngày trên):
 {ctx}
 
-CÂU HỎI: {question}"""
+CÂU HỎI: {question}
 
-    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-
-    # keep only the last MAX_HISTORY_TURNS user+assistant pairs
-    if history:
-        trimmed = history[-(MAX_HISTORY_TURNS * 2):]
-        for turn in trimmed:
-            if turn.role in ("user", "assistant") and turn.content.strip():
-                messages.append({"role": turn.role, "content": turn.content})
-
-    messages.append({"role": "user", "content": user_content})
-    return messages
+TRẢ LỜI (ngắn gọn, chính xác, có trích dẫn):"""
 
 
-def _ask_ollama_chat(messages) -> str:
+def _ask_ollama(prompt: str) -> str:
     data = json.dumps({
         "model": OLLAMA_MODEL,
-        "messages": messages,
+        "prompt": prompt,
         "stream": False,
-        "options": {"temperature": 0.3},
+        "options": {"temperature": 0.1},
     }).encode("utf-8")
     req = urllib.request.Request(
         OLLAMA_URL, data=data, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=240) as resp:
-        body = json.loads(resp.read())
-        return body.get("message", {}).get("content", "").strip()
+    with urllib.request.urlopen(req, timeout=180) as resp:
+        return json.loads(resp.read()).get("response", "").strip()
 
 
 @app.post("/chat")
 def chat(req: ChatRequest):
-    """Multi-turn RAG chatbot."""
+    """Full RAG: temporal retrieval + local LLM answer."""
     model = _get_model()
     emb = model.encode([req.question], normalize_embeddings=True)[0]
     vec = "[" + ",".join(f"{x:.6f}" for x in emb) + "]"
@@ -235,14 +211,15 @@ def chat(req: ChatRequest):
                           "nào còn hiệu lực. Vui lòng chọn mốc từ 01/01/2020 trở đi.",
                 "sources": [], "query_date": req.date}
 
-    messages = _build_messages(req.question, req.date, chunks, req.history or [])
+    prompt = _build_prompt(req.question, req.date, chunks)
     try:
-        answer = _ask_ollama_chat(messages)
+        answer = _ask_ollama(prompt)
     except urllib.error.URLError:
         return {"answer": "Không kết nối được với mô hình ngôn ngữ (Ollama). "
                           "Hãy đảm bảo Ollama đang chạy.",
                 "sources": [], "query_date": req.date, "error": "ollama_unreachable"}
 
+    # dedupe sources by (document, article)
     seen, sources = set(), []
     for doc_id, label, content, title in chunks:
         key = (doc_id, label)
