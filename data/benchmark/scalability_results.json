@@ -1,0 +1,102 @@
+{
+  "dimension": 768,
+  "n_query_trials": 15,
+  "results": [
+    {
+      "scale": 1000,
+      "hnsw_build_seconds": 0.78,
+      "no_index_semantic_only_ms": {
+        "mean_ms": 2.54,
+        "p50_ms": 2.35,
+        "p95_ms": 5.39
+      },
+      "no_index_with_temporal_filter_ms": {
+        "mean_ms": 1.89,
+        "p50_ms": 1.8,
+        "p95_ms": 3.17
+      },
+      "hnsw_semantic_only_ms": {
+        "mean_ms": 0.61,
+        "p50_ms": 0.51,
+        "p95_ms": 2.33
+      },
+      "hnsw_with_temporal_filter_ms": {
+        "mean_ms": 1.82,
+        "p50_ms": 1.78,
+        "p95_ms": 1.97
+      }
+    },
+    {
+      "scale": 10000,
+      "hnsw_build_seconds": 9.48,
+      "no_index_semantic_only_ms": {
+        "mean_ms": 28.28,
+        "p50_ms": 27.1,
+        "p95_ms": 40.68
+      },
+      "no_index_with_temporal_filter_ms": {
+        "mean_ms": 37.27,
+        "p50_ms": 29.12,
+        "p95_ms": 75.98
+      },
+      "hnsw_semantic_only_ms": {
+        "mean_ms": 0.58,
+        "p50_ms": 0.51,
+        "p95_ms": 1.74
+      },
+      "hnsw_with_temporal_filter_ms": {
+        "mean_ms": 0.54,
+        "p50_ms": 0.52,
+        "p95_ms": 0.8
+      }
+    },
+    {
+      "scale": 50000,
+      "hnsw_build_seconds": 270.07,
+      "no_index_semantic_only_ms": {
+        "mean_ms": 225.94,
+        "p50_ms": 209.71,
+        "p95_ms": 361.53
+      },
+      "no_index_with_temporal_filter_ms": {
+        "mean_ms": 189.55,
+        "p50_ms": 169.99,
+        "p95_ms": 340.93
+      },
+      "hnsw_semantic_only_ms": {
+        "mean_ms": 5.58,
+        "p50_ms": 5.16,
+        "p95_ms": 17.02
+      },
+      "hnsw_with_temporal_filter_ms": {
+        "mean_ms": 1.19,
+        "p50_ms": 1.1,
+        "p95_ms": 1.85
+      }
+    },
+    {
+      "scale": 100000,
+      "hnsw_build_seconds": 984.66,
+      "no_index_semantic_only_ms": {
+        "mean_ms": 729.74,
+        "p50_ms": 589.22,
+        "p95_ms": 1831.83
+      },
+      "no_index_with_temporal_filter_ms": {
+        "mean_ms": 508.37,
+        "p50_ms": 481.32,
+        "p95_ms": 692.92
+      },
+      "hnsw_semantic_only_ms": {
+        "mean_ms": 10.38,
+        "p50_ms": 9.03,
+        "p95_ms": 22.48
+      },
+      "hnsw_with_temporal_filter_ms": {
+        "mean_ms": 2.2,
+        "p50_ms": 2.03,
+        "p95_ms": 4.96
+      }
+    }
+  ]
+}

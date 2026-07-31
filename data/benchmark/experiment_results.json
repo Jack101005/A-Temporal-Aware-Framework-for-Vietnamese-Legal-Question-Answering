@@ -1,46 +1,46 @@
 {
   "temporal_questions": {
-    "n": 11,
+    "n": 19,
     "standard": {
-      "temporal_accuracy": 18.2,
-      "doc_in_topk": 100.0,
-      "citation_match": 18.2,
-      "anachronism": 81.8
+      "temporal_accuracy": 31.6,
+      "doc_in_topk": 94.7,
+      "citation_match": 26.3,
+      "anachronism": 52.6
     },
     "temporal": {
-      "temporal_accuracy": 100.0,
-      "doc_in_topk": 100.0,
-      "citation_match": 100.0,
+      "temporal_accuracy": 78.9,
+      "doc_in_topk": 94.7,
+      "citation_match": 73.7,
       "anachronism": 0.0
     }
   },
   "static_questions": {
-    "n": 9,
+    "n": 81,
     "standard": {
-      "temporal_accuracy": 77.8,
+      "temporal_accuracy": 86.4,
       "doc_in_topk": 100.0,
-      "citation_match": 55.6,
+      "citation_match": 65.4,
       "anachronism": 0.0
     },
     "temporal": {
-      "temporal_accuracy": 77.8,
+      "temporal_accuracy": 86.4,
       "doc_in_topk": 100.0,
-      "citation_match": 55.6,
+      "citation_match": 65.4,
       "anachronism": 0.0
     }
   },
   "overall": {
-    "n": 20,
+    "n": 100,
     "standard": {
-      "temporal_accuracy": 45.0,
-      "doc_in_topk": 100.0,
-      "citation_match": 35.0,
-      "anachronism": 45.0
+      "temporal_accuracy": 76.0,
+      "doc_in_topk": 99.0,
+      "citation_match": 58.0,
+      "anachronism": 10.0
     },
     "temporal": {
-      "temporal_accuracy": 90.0,
-      "doc_in_topk": 100.0,
-      "citation_match": 80.0,
+      "temporal_accuracy": 85.0,
+      "doc_in_topk": 99.0,
+      "citation_match": 67.0,
       "anachronism": 0.0
     }
   },
@@ -362,6 +362,1286 @@
         "temporal_accuracy": 1,
         "doc_in_topk": 1,
         "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q021",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q022",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q023",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q024",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q025",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q026",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q027",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q028",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q029",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q030",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q031",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q032",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q033",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q034",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q035",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q036",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q037",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q038",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q039",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q040",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q041",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q042",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q043",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q044",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q045",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q046",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 1
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q047",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q048",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q049",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q050",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q051",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q052",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q053",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q054",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q055",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 0,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 0,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q056",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q057",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q058",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q059",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q060",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q061",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q062",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q063",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q064",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q065",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q066",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q067",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q068",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q069",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q070",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q071",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q072",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q073",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q074",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q075",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q076",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q077",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q078",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q079",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q080",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q081",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q082",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q083",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q084",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q085",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q086",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q087",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q088",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q089",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q090",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q091",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q092",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q093",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q094",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q095",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q096",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q097",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q098",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q099",
+      "category": "static",
+      "standard": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 0,
+        "doc_in_topk": 1,
+        "citation_match": 0,
+        "anachronism": 0
+      }
+    },
+    {
+      "id": "Q100",
+      "category": "temporal",
+      "standard": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
+        "anachronism": 0
+      },
+      "temporal": {
+        "temporal_accuracy": 1,
+        "doc_in_topk": 1,
+        "citation_match": 1,
         "anachronism": 0
       }
     }

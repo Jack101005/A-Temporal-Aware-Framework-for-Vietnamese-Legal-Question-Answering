@@ -588,7 +588,7 @@
     {
       "id": "Q046",
       "question": "Ai thuộc đối tượng áp dụng của Nghị định 90/2019/NĐ-CP?",
-      "query_date": "2021-03-31",
+      "query_date": "2026-06-08",
       "category": "temporal",
       "topic": "nghị định",
       "gold_document_id": "ND_90_2019",
@@ -596,7 +596,7 @@
       "expected_answer": "Người lao động làm việc theo chế độ hợp đồng lao động theo quy định của Bộ luật Lao động, Doanh nghiệp thành lập, tổ chức quản lý và hoạt động theo Luật Doanh nghiệp, Hợp tác xã, liên hiệp hợp tác xã, tổ hợp tác, trang trại, hộ gia đình, cá nhân và các tổ chức khác của Việt Nam có thuê mướn lao động theo hợp đồng lao động, Cơ quan, tổ chức nước ngoài, tổ chức quốc tế và cá nhân người nước ngoài tại Việt Nam có thuê mướn lao động theo hợp đồng lao động (trừ trường hợp điều ước quốc tế mà Cộng hòa xã hội chủ nghĩa Việt Nam là thành viên có quy định khác với quy định của Nghị định này). Các doanh nghiệp, hợp tác xã, liên hiệp hợp tác xã, tổ hợp tác, trang trại, hộ gia đình, cơ quan, tổ chức và cá nhân quy định tại các khoản 2, 3 và khoản 4 Điều này sau đây gọi chung là doanh nghiệp.",
       "expected_figure": "2",
       "verified": false,
-      "notes": "auto-generated from article text; needs manual review (no numeric anchor to auto-check) | query_date corrected to fall inside the gold document's actual effective window."
+      "notes": "auto-generated from article text; needs manual review (no numeric anchor to auto-check)"
     },
     {
       "id": "Q047",
